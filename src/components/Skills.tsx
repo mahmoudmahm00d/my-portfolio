@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Database,
   Cloud,
@@ -9,7 +9,12 @@ import {
   Devices,
   SealCheck,
 } from "@phosphor-icons/react";
-import { useRef } from "react";
+
+interface skillGroup {
+  category: string;
+  icon: JSX.Element;
+  skills: string[];
+}
 
 const container = {
   hidden: { opacity: 0 },
@@ -19,11 +24,6 @@ const container = {
       staggerChildren: 0.1,
     },
   },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 2 } },
 };
 
 const skills = [
@@ -81,7 +81,7 @@ export default function Skills() {
             <span className="gradient-text">Technical Skills</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            With over 5 years of experience in .NET development, I've honed a
+            With over 5 years of experience in .NET development, I&aposve honed a
             variety of skills across the Microsoft ecosystem and beyond.
           </p>
         </motion.div>
@@ -99,7 +99,7 @@ export default function Skills() {
   );
 }
 
-function skill(index: number, skillGroup) {
+function skill(index: number, skillGroup: skillGroup) {
   return (
     <motion.div
       key={index}

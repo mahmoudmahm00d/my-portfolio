@@ -22,20 +22,10 @@ export function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const encodeData = (data) => {
-    return Object.keys(data)
-      .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-      .join('&');
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setTimeout(() => {
-      const encodedParams = encodeData(formData);
-      const mailtoLink = `mailto:mahmoud.darwish.mahmoud.m@gmail.com?${encodedParams}`;
-      // Open mail client
-      window.location.href = mailtoLink;
       // toast({
       //   title: "Message sent!",
       //   description: "Thank you for your message. I'll get back to you soon.",

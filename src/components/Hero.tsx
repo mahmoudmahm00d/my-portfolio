@@ -29,7 +29,7 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              Hello, I'm
+              Hello, I&aposm
             </motion.p>
             <motion.h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 gradient-text"
@@ -69,7 +69,7 @@ export default function Hero() {
                 href="#contact"
                 className="px-6 py-3 outline outline-md outline-purple-600 hover:bg-purple-600/80 hover:text-white rounded-md transition-colors flex items-center gap-2"
               >
-                <Code weight="duotone" /> Let's work together
+                <Code weight="duotone" /> Let&aposs work together
               </Link>
               <Link
                 href="/resume.pdf"

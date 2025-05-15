@@ -39,12 +39,17 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+    children,
+  }: {
+    children: React.ReactNode
+  }) {
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className={`${inter.className} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider storageKey="theme-preference" defaultTheme="system" enableSystem>
           <div className="flex min-h-screen flex-col">
             <Header />
             <main className="flex-1">{children}</main>
