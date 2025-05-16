@@ -82,7 +82,7 @@ export default function Skills() {
             <span className="gradient-text">Technical Skills</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            With over 5 years of experience in .NET development, I&aposve honed a
+            With over 5 years of experience in .NET development, I&apos;ve honed a
             variety of skills across the Microsoft ecosystem and beyond.
           </p>
         </motion.div>
