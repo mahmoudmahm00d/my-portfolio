@@ -9,6 +9,7 @@ import {
   Devices,
   SealCheck,
 } from "@phosphor-icons/react";
+import { JSX } from "react";
 
 interface skillGroup {
   category: string;
