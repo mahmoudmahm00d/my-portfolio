@@ -8,16 +8,16 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Mahmoud Mahmoud | .NET Software Engineer',
-  description: 'Professional portfolio of Mahmoud Mahmoud, a .NET Software Engineer specializing in C#, ASP.NET Core, and cloud solutions.',
+  description: 'Mahmoud Mahmoud portfolio, a .NET Software Engineer specializing in C#, ASP.NET Core, and cloud solutions.',
   keywords: '.NET, C#, Software Engineer, ASP.NET Core, Azure, Full Stack Developer',
   openGraph: {
     title: 'Mahmoud Mahmoud | .NET Software Engineer',
     description: 'Professional portfolio of Mahmoud Mahmoud, a .NET Software Engineer specializing in C#, ASP.NET Core, and cloud solutions.',
-    url: 'https://johndoe.dev',
+    // url: 'https://johndoe.dev',
     siteName: 'Mahmoud Mahmoud Portfolio',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.jpeg',
         width: 1200,
         height: 630,
         alt: 'Mahmoud Mahmoud - .NET Software Engineer',
