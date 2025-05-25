@@ -72,7 +72,7 @@ export default function Hero() {
                 <Code weight="duotone" /> Let&apos;s work together
               </Link>
               <Link
-                href="/resume.pdf"
+                href="/MahmoudMahmoudResume.pdf"
                 className="px-6 py-3 text-white bg-purple-700 hover:bg-purple-600/80 rounded-md transition-colors flex items-center gap-2"
                 target="_blank"
               >
