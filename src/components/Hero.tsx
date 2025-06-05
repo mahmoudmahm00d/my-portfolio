@@ -1,7 +1,5 @@
 "use client";
-
 import { motion } from "framer-motion";
-import Image from "next/image";
 import {
   ArrowDown,
   GithubLogo,
@@ -9,8 +7,10 @@ import {
   Code,
   Download,
 } from "@phosphor-icons/react";
-import Tilt from "react-parallax-tilt";
 import Link from "next/link";
+import TiltedCard from "./TiltedCard";
+import RotatingText from "./RotatingText";
+import Magnet from "./Magnet";
 
 export default function Hero() {
   return (
@@ -45,7 +45,25 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              .NET Software Engineer
+              <div className="w-[20rem] transition">
+                <RotatingText
+                  texts={[
+                    "Software Engineer",
+                    ".NET Full-Stack Developer",
+                    "Full-Stack Web Developer",
+                    "Mobile Developer",
+                  ]}
+                  mainClassName="px-2 text-md sm:px-2 md:px-3 bg-indigo-500 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-md"
+                  staggerFrom={"first"}
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "-120%" }}
+                  staggerDuration={0.025}
+                  splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                  transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                  rotationInterval={3000}
+                />
+              </div>
             </motion.h2>
             <motion.p
               className="text-muted-foreground mb-8 max-w-lg"
@@ -65,19 +83,23 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.6 }}
             >
-              <Link
-                href="#contact"
-                className="px-6 py-3 outline outline-md outline-purple-600 hover:bg-purple-600/80 hover:text-white rounded-md transition-colors flex items-center gap-2"
-              >
-                <Code weight="duotone" /> Let&apos;s work together
-              </Link>
-              <Link
-                href="/MahmoudMahmoudResume.pdf"
-                className="px-6 py-3 text-white bg-purple-700 hover:bg-purple-600/80 rounded-md transition-colors flex items-center gap-2"
-                target="_blank"
-              >
-                <Download weight="duotone" /> Download CV
-              </Link>
+              <Magnet padding={10} magnetStrength={8}>
+                <Link
+                  href="#contact"
+                  className="me-4 px-6 py-3 outline outline-md outline-purple-600 hover:bg-purple-600/80 hover:text-white rounded-md transition-colors flex items-center gap-2"
+                >
+                  <Code weight="duotone" /> Let&apos;s work together
+                </Link>
+              </Magnet>
+              <Magnet padding={10} magnetStrength={8}>
+                <Link
+                  href="/MahmoudMahmoudResume.pdf"
+                  className="px-6 py-3 text-white bg-purple-700 hover:bg-purple-600/80 rounded-md transition-colors flex items-center gap-2"
+                  target="_blank"
+                >
+                  <Download weight="duotone" /> Download CV
+                </Link>
+              </Magnet>
             </motion.div>
 
             <motion.div
@@ -119,30 +141,102 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="flex justify-center lg:justify-end"
           >
+            <div className="md:display-block w-24"></div>
             <motion.div
+              className="scale-65 sm:scale-80 md:scale-90 lg:scale-80 xl:scale-90 2xl:scale-100 transition-transform"
               animate={{ y: [-8, 8, -8] }}
               transition={{ repeat: Infinity, duration: 2.25 }}
             >
-              <Tilt className="relative">
-                <Image
-                  src="/frame.webp"
-                  alt="Minimal API Code Frame"
-                  width={690}
-                  height={338}
-                  className="drop-shadow-lg drop-shadow-indigo-500/30"
-                  priority
-                />
-                <div className="absolute top-2 left-0 w-full h-full flex items-center justify-center">
-                  <Image
-                    src="/code.webp"
-                    alt="Minimal API Code"
-                    width={630}
-                    height={308}
-                    className="transform transition duration-700 hover:scale-117 hover:scale-117 hover:drop-shadow-sm hover:drop-shadow-indigo-500/20"
-                    priority
-                  />
-                </div>
-              </Tilt>
+              <TiltedCard
+                content={
+                  <div className="bg-[#1E1E2E] w-[660px] h-[308px] top-0 left-0 rounded-lg py-8 p-4 transform font-mono text-base">
+                    <div className="flex items-center justify-between">
+                      <div className="grid grid-cols-3 gap-2 w-[56px]">
+                        <div className="rounded-full w-[16px] h-[16px] bg-[#aaa] hover:bg-red"></div>
+                        <div className="rounded-full w-[16px] h-[16px] bg-[#aaa] hover:bg-yellow"></div>
+                        <div className="rounded-full w-[16px] h-[16px] bg-[#aaa] hover:bg-green"></div>
+                      </div>
+                      <p className="">Program.cs</p>
+                      <p className="opacity-0">Program.cs</p>
+                    </div>
+                  </div>
+                }
+                captionText=".NET minimal API app"
+                containerHeight="308px"
+                containerWidth="660px"
+                rotateAmplitude={12}
+                scaleOnHover={1.1}
+                showMobileWarning={false}
+                showTooltip={true}
+                displayOverlayContent={true}
+                overlayContent={
+                  <div className="scale-120 font-mono text-base">
+                    <div className="flex mt-8">
+                      <span className="text-[#F5E0DC] w-8">1</span>
+                      <span className="text-[#CBA6F7]">var</span>
+                      <span className="text-[#F9E2AF] ml-2">builder</span>
+                      <span className="text-[#CDD6F4] ml-2">=</span>
+                      <span className="text-[#89B4FA] ml-2">
+                        WebApplication
+                      </span>
+                      <span className="text-[#CDD6F4]">.</span>
+                      <span className="text-[#89B4FA]">CreateBuilder</span>
+                      <span className="text-[#CDD6F4]">(</span>
+                      <span className="text-[#CDD6F4]">args</span>
+                      <span className="text-[#CDD6F4]">);</span>
+                    </div>
+                    <div className="flex mt-2">
+                      <span className="text-[#F5E0DC] w-8">2</span>
+                      <span className="text-[#CBA6F7]">var</span>
+                      <span className="text-[#F9E2AF] ml-2">app</span>
+                      <span className="text-[#CDD6F4] ml-2">=</span>
+                      <span className="text-[#F9E2AF] ml-2">builder</span>
+                      <span className="text-[#CDD6F4]">.</span>
+                      <span className="text-[#89B4FA]">Build</span>
+                      <span className="text-[#CDD6F4]">(</span>
+                      <span className="text-[#CDD6F4]">);</span>
+                    </div>
+                    <div className="flex mt-2">
+                      <span className="text-[#F5E0DC] w-8">3</span>
+                    </div>
+                    <div className="flex mt-2">
+                      <span className="text-[#F5E0DC] w-8">4</span>
+                      <span className="text-[#F9E2AF]">app</span>
+                      <span className="text-[#CDD6F4]">.</span>
+                      <span className="text-[#89B4FA]">MapGet</span>
+                      <span className="text-[#CDD6F4]">(</span>
+                      <span className="text-[#A6E3AB]">&quot;/&quot;</span>
+                      <span className="text-[#CDD6F4]">,</span>
+                      <span className="text-[#CDD6F4] ml-2">()</span>
+                      <span className="text-[#CBA6F7] ml-2">=&gt; </span>
+                      <span className="text-[#A6E3AB]">
+                        &quot;Hello I am Mahmoud!&quot;
+                      </span>
+                      <span className="text-[#CDD6F4]">);</span>
+                    </div>
+                    <div className="flex mt-2">
+                      <span className="text-[#F5E0DC] w-8">5</span>
+                    </div>
+                    <div className="flex mt-2">
+                      <span className="text-[#F5E0DC] w-8">6</span>
+                      <span className="text-[#F9E2AF]">app</span>
+                      <span className="text-[#CDD6F4]">.</span>
+                      <span className="text-[#89B4FA]">Run</span>
+                      <span className="text-[#CDD6F4]">(</span>
+                      <span className="text-[#CDD6F4]">);</span>
+                    </div>
+                  </div>
+
+                  // <Image
+                  //   src="/code.webp"
+                  //   alt="Minimal API Code"
+                  //   width={660}
+                  //   height={308}
+                  //   className=""
+                  //   priority
+                  // />
+                }
+              />
             </motion.div>
           </motion.div>
         </div>
