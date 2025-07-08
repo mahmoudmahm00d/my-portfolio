@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { At, House, User } from "@phosphor-icons/react";
+import { toast } from "sonner";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -22,17 +23,37 @@ export function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      // toast({
-      //   title: "Message sent!",
-      //   description: "Thank you for your message. I'll get back to you soon.",
-      // });
+    try{
+      const res = await fetch("/api/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!res.ok) {
+        const data = await res.json();
+        toast("Something went wrong", {
+          description: "Please try again later.",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+  
+      toast("Message sent!", {
+        description: "Thank you for your message. I'll get back to you soon.",
+      });
       setFormData({ name: "", email: "", message: "" });
       setIsSubmitting(false);
-    }, 1500);
+    } catch {
+      setFormData({ name: "", email: "", message: "" });
+      setIsSubmitting(false);
+      toast("Something went wrong", {
+        description: "Please try again later.",
+      });
+    }
   };
 
   return (
@@ -45,7 +66,9 @@ export function Contact() {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">Get In Touch</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">
+            Get In Touch
+          </h2>
           <div className="h-1 w-20 bg-primary mx-auto mb-6"></div>
           <p className="text-muted-foreground">
             Have a question or want to work together? Feel free to contact me!
@@ -124,7 +147,10 @@ export function Contact() {
             <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium mb-2"
+                >
                   Your Name
                 </label>
                 <Input
@@ -138,7 +164,10 @@ export function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium mb-2"
+                >
                   Your Email
                 </label>
                 <Input
@@ -153,7 +182,10 @@ export function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium mb-2"
+                >
                   Your Message
                 </label>
                 <Textarea
@@ -167,7 +199,11 @@ export function Contact() {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full bg-primary text-white" disabled={isSubmitting}>
+              <Button
+                type="submit"
+                className="w-full bg-primary text-white"
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
