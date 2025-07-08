@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    var json = await result.json();
+    const json = await result.json();
     if (!json.success) {
       return NextResponse.json(
         { success: false, error: "Turnstile verification failed" },
