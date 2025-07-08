@@ -7,12 +7,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { At, House, User } from "@phosphor-icons/react";
 import { toast } from "sonner";
+import Script from "next/script";
 
 export function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
+    cfTurnstileResponse: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -25,30 +27,47 @@ export function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const form = new FormData(e.target as HTMLFormElement);
+    const cfTurnstileResponse = form.get("cf-turnstile-response");
+    if (cfTurnstileResponse === null || cfTurnstileResponse === "") {
+      toast("Please complete the CAPTCHA", {
+        description: "Please try again later.",
+      });
+      return;
+    }
+    
+    formData.cfTurnstileResponse = cfTurnstileResponse as string;
+    if (formData.cfTurnstileResponse === null || formData.cfTurnstileResponse === "") {
+      toast("Please complete the CAPTCHA", {
+        description: "Please try again later.",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
-    try{
+    try {
       const res = await fetch("/api/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-  
+
       if (!res.ok) {
-        await res.json();
+        const json = await res.json();
         toast("Something went wrong", {
-          description: "Please try again later.",
+          description: json.error || "Please try again later",
         });
         setIsSubmitting(false);
         return;
       }
-  
+
       toast("Message sent!", {
         description: "Thank you for your message. I'll get back to you soon.",
       });
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", message: "", cfTurnstileResponse: "" });
       setIsSubmitting(false);
     } catch {
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", message: "", cfTurnstileResponse: "" });
       setIsSubmitting(false);
       toast("Something went wrong", {
         description: "Please try again later.",
@@ -199,6 +218,16 @@ export function Contact() {
                   required
                 />
               </div>
+              <Script
+                src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+                async
+                defer
+              />
+              <div
+                className="cf-turnstile"
+                data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                data-callback="javascriptCallback"
+              ></div>
               <Button
                 type="submit"
                 className="w-full bg-primary text-white"
