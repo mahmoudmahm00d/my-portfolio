@@ -34,7 +34,7 @@ export function Contact() {
       });
   
       if (!res.ok) {
-        const data = await res.json();
+        await res.json();
         toast("Something went wrong", {
           description: "Please try again later.",
         });
@@ -91,7 +91,7 @@ export function Contact() {
                 <div>
                   <h4 className="font-medium mb-1">Email</h4>
                   <a
-                    href="mailto:hello@johndeveloper.com"
+                    href="mailto:mahmoud.darwish.mahmoud.m@gmail.com"
                     className="text-muted-foreground text-md md:text-sm hover:text-primary transition-colors"
                   >
                     mahmoud.darwish.mahmoud.m@gmail.com
@@ -115,19 +115,19 @@ export function Contact() {
                   <h4 className="font-medium mb-1">Social Profiles</h4>
                   <div className="flex space-x-3">
                     <a
-                      href="#"
+                      href="https://github.com/mahmoudmahm00d"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       GitHub
                     </a>
                     <a
-                      href="#"
+                      href="https://www.linkedin.com/in/mahmoud-darwish-mahmoud/"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       LinkedIn
                     </a>
                     <a
-                      href="#"
+                      href="https://x.com/MAHM00DMAHM00D"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
                       Twitter
