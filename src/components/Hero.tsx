@@ -66,7 +66,7 @@ export default function Hero() {
               </div>
             </motion.h2>
             <motion.p
-              className="text-muted-foreground mb-8 max-w-lg"
+              className="text-justify text-muted-foreground mb-8 max-w-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.6 }}
@@ -143,7 +143,7 @@ export default function Hero() {
           >
             <div className="md:display-block w-24"></div>
             <motion.div
-              className="scale-65 sm:scale-80 md:scale-90 lg:scale-80 xl:scale-90 2xl:scale-100 transition-transform"
+              className="xs:w-90 scale-60 sm:scale-70 md:scale-80 lg:scale-80 xl:scale-90 2xl:scale-100 transition-transform"
               animate={{ y: [-8, 8, -8] }}
               transition={{ repeat: Infinity, duration: 2.25 }}
             >
@@ -156,7 +156,7 @@ export default function Hero() {
                         <div className="rounded-full w-[16px] h-[16px] bg-[#aaa] hover:bg-yellow"></div>
                         <div className="rounded-full w-[16px] h-[16px] bg-[#aaa] hover:bg-green"></div>
                       </div>
-                      <p className="">Program.cs</p>
+                      <p className="text-white">Program.cs</p>
                       <p className="opacity-0">Program.cs</p>
                     </div>
                   </div>

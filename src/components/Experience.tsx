@@ -76,7 +76,7 @@ export default function Experience() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="gradient-text">Professional Experience</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-justify text-muted-foreground max-w-2xl mx-auto">
             My journey through the software development landscape, focusing on
             .NET technologies and enterprise solutions.
           </p>
@@ -103,7 +103,7 @@ export default function Experience() {
 
                 <div className="bg-card rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow border border-border">
                   <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                    <h3 className="text-xl font-bold flex items-center">
+                    <h3 className="text-justify text-xl font-bold flex items-center">
                       <Briefcase
                         weight="duotone"
                         className="text-primary mr-2"
@@ -130,7 +130,7 @@ export default function Experience() {
                     </span>
                   </div>
 
-                  <p className="text-foreground mb-4">
+                  <p className="text-justify text-foreground mb-4">
                     {exp.description}
                   </p>
 
@@ -141,7 +141,7 @@ export default function Experience() {
                     </h4>
                     <ul className="list-disc list-inside space-y-1 text-sm text-foreground pl-1">
                       {exp.achievements.map((achievement, i) => (
-                        <li key={i}>{achievement}</li>
+                        <li className="text-justify" key={i}>{achievement}</li>
                       ))}
                     </ul>
                   </div>
