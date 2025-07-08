@@ -3,6 +3,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import Header from '@/components/Header';
 
 import './globals.css'
+import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,7 +14,7 @@ export const metadata = {
   openGraph: {
     title: 'Mahmoud Mahmoud | .NET Software Engineer',
     description: 'Professional portfolio of Mahmoud Mahmoud, a .NET Software Engineer specializing in C#, ASP.NET Core, and cloud solutions.',
-    // url: 'https://johndoe.dev',
+    url: 'https://mahmoudmahmoud.barmjli.com',
     siteName: 'Mahmoud Mahmoud Portfolio',
     images: [
       {
@@ -53,7 +54,7 @@ export default function RootLayout({
           <div className="flex min-h-screen flex-col">
             <Header />
             <main className="flex-1">{children}</main>
-            {/* <Footer /> */}
+            <Toaster />
           </div>
         </ThemeProvider>
       </body>
