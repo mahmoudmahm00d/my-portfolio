@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import Header from '@/components/Header';
+import portfolio from '@/data/portfolio';
 
 import './globals.css'
 import { Toaster } from 'sonner';
@@ -8,24 +9,32 @@ import { Toaster } from 'sonner';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Mahmoud Mahmoud | .NET Software Engineer',
-  description: 'Mahmoud Mahmoud portfolio, a .NET Software Engineer specializing in C#, ASP.NET Core, and cloud solutions.',
-  keywords: '.NET, C#, Software Engineer, ASP.NET Core, Azure, Full Stack Developer',
+  metadataBase: new URL(portfolio.seo.metadataBase || 'https://example.com'),
+  title: portfolio.seo.title,
+  description: portfolio.seo.description,
+  keywords: portfolio.seo.keywords,
   openGraph: {
-    title: 'Mahmoud Mahmoud | .NET Software Engineer',
-    description: 'Professional portfolio of Mahmoud Mahmoud, a .NET Software Engineer specializing in C#, ASP.NET Core, and cloud solutions.',
-    url: 'https://mahmoudmahmoud.barmjli.com',
-    siteName: 'Mahmoud Mahmoud Portfolio',
+    title: portfolio.seo.title,
+    description: portfolio.seo.description,
+    url: portfolio.seo.metadataBase,
+    siteName: portfolio.seo.title,
     images: [
       {
-        url: '/og-image.jpeg',
+        url: portfolio.seo.ogImage || '/og-image.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Mahmoud Mahmoud - .NET Software Engineer',
+        alt: portfolio.seo.title,
       },
     ],
     locale: 'en_US',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: portfolio.seo.title,
+    description: portfolio.seo.description,
+    images: [portfolio.seo.ogImage || '/og-image.jpeg'],
+    creator: portfolio.seo.twitterHandle,
   },
   robots: {
     index: true,
@@ -41,10 +50,10 @@ export const metadata = {
 };
 
 export default function RootLayout({
-    children,
-  }: {
-    children: React.ReactNode
-  }) {
+  children,
+}: {
+  children: React.ReactNode
+}) {
 
   return (
     <html lang="en" suppressHydrationWarning>

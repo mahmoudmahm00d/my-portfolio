@@ -11,6 +11,7 @@ import Link from "next/link";
 import TiltedCard from "./TiltedCard";
 import RotatingText from "./RotatingText";
 import Magnet from "./Magnet";
+import portfolio from "@/data/portfolio";
 
 export default function Hero() {
   return (
@@ -37,7 +38,7 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              Mahmoud Mahmoud
+              {portfolio.name}
             </motion.h1>
             <motion.h2
               className="text-2xl md:text-3xl font-medium mb-6 text-foreground/80"
@@ -47,12 +48,7 @@ export default function Hero() {
             >
               <div className="w-[20rem] transition">
                 <RotatingText
-                  texts={[
-                    "Software Engineer",
-                    ".NET Full-Stack Developer",
-                    "Full-Stack Web Developer",
-                    "Mobile Developer",
-                  ]}
+                  texts={portfolio.roles}
                   mainClassName="px-2 text-md sm:px-2 md:px-3 bg-indigo-500 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-md"
                   staggerFrom={"first"}
                   initial={{ y: "100%" }}
@@ -71,10 +67,7 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.6 }}
             >
-              Specialized in building robust, scalable applications using
-              ASP.NET Core, C#, and cloud technologies. Passionate about clean
-              code, microservices, and delivering high-quality software
-              solutions.
+              {portfolio.about}
             </motion.p>
 
             <motion.div
@@ -93,7 +86,7 @@ export default function Hero() {
               </Magnet>
               <Magnet padding={10} magnetStrength={8}>
                 <Link
-                  href="/MahmoudMahmoudResume.pdf"
+                  href={portfolio.social.cv || "/MahmoudMahmoudResume.pdf"}
                   className="px-6 py-3 text-white bg-purple-700 hover:bg-purple-600/80 rounded-md transition-colors flex items-center gap-2"
                   target="_blank"
                 >
@@ -108,30 +101,34 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7, duration: 0.6 }}
             >
-              <Link
-                href="https://github.com/mahmoudmahm00d"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-              >
-                <GithubLogo
-                  size={40}
-                  weight="duotone"
-                  className="text-primary outline outline-md outline-purple-600 rounded-md p-2 hover:bg-purple-600 hover:text-white transition-colors"
-                />
-              </Link>
-              <Link
-                href="https://linkedin.com/in/mahmoud-darwish-mahmoud"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <LinkedinLogo
-                  size={40}
-                  weight="duotone"
-                  className="text-primary outline outline-md outline-purple-600 rounded-md p-2 hover:bg-purple-600 hover:text-white transition-colors"
-                />
-              </Link>
+              {portfolio.social.github && (
+                <Link
+                  href={portfolio.social.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                >
+                  <GithubLogo
+                    size={40}
+                    weight="duotone"
+                    className="text-primary outline outline-md outline-purple-600 rounded-md p-2 hover:bg-purple-600 hover:text-white transition-colors"
+                  />
+                </Link>
+              )}
+              {portfolio.social.linkedin && (
+                <Link
+                  href={portfolio.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <LinkedinLogo
+                    size={40}
+                    weight="duotone"
+                    className="text-primary outline outline-md outline-purple-600 rounded-md p-2 hover:bg-purple-600 hover:text-white transition-colors"
+                  />
+                </Link>
+              )}
             </motion.div>
           </motion.div>
 
@@ -210,9 +207,9 @@ export default function Hero() {
                       <span className="text-[#CDD6F4] ml-2">()</span>
                       <span className="text-[#CBA6F7] ml-2">=&gt; </span>
                       <span className="text-[#A6E3AB]">
-                        &quot;Hello I am Mahmoud!&quot;
+                        &quot;Hello I am {portfolio.name.split(' ')[0]}!&quot;
                       </span>
-                      <span className="text-[#CDD6F4]">);</span>
+                      <span className="text-[#CDD6F4]">;</span>
                     </div>
                     <div className="flex mt-2">
                       <span className="text-[#F5E0DC] w-8">5</span>
@@ -226,15 +223,6 @@ export default function Hero() {
                       <span className="text-[#CDD6F4]">);</span>
                     </div>
                   </div>
-
-                  // <Image
-                  //   src="/code.webp"
-                  //   alt="Minimal API Code"
-                  //   width={660}
-                  //   height={308}
-                  //   className=""
-                  //   priority
-                  // />
                 }
               />
             </motion.div>

@@ -10,11 +10,19 @@ import {
   SealCheck,
 } from "@phosphor-icons/react";
 import { JSX } from "react";
+import portfolio from "@/data/portfolio";
+import type { SkillGroup } from "@/types/portfolio";
 
-interface skillGroup {
-  category: string;
-  icon: JSX.Element;
-  skills: string[];
+const iconMap: Record<string, JSX.Element> = {
+  Database: <Database size={32} weight="duotone" className="text-purple-600" />,
+  Cloud: <Cloud size={32} weight="duotone" className="text-purple-600" />,
+  BracketsCurly: <BracketsCurly size={32} weight="duotone" className="text-purple-600" />,
+  DesktopTower: <DesktopTower size={32} weight="duotone" className="text-purple-600" />,
+  Devices: <Devices size={32} weight="duotone" className="text-purple-600" />,
+};
+
+function getIcon(iconName: string): JSX.Element {
+  return iconMap[iconName] || <BracketsCurly size={32} weight="duotone" className="text-purple-600" />;
 }
 
 const container = {
@@ -26,46 +34,6 @@ const container = {
     },
   },
 };
-
-const skills = [
-  {
-    category: "Backend Development",
-    icon: (
-      <BracketsCurly size={32} weight="duotone" className="text-purple-600" />
-    ),
-    skills: ["C#", "ASP.NET Core", "Web API", "Entity Framework Core", "LINQ"],
-  },
-  {
-    category: "Frontend Development",
-    icon: (
-      <DesktopTower size={32} weight="duotone" className="text-purple-600" />
-    ),
-    skills: [
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Next.js",
-      "HTML/CSS",
-      "TailwindCSS",
-      "Bootstrap",
-    ],
-  },
-  {
-    category: "Database",
-    icon: <Database size={32} weight="duotone" className="text-purple-600" />,
-    skills: ["SQL Server", "PostgreSQL", "MySQL", "SQLite"],
-  },
-  {
-    category: "Cross Platform",
-    icon: <Devices size={32} weight="duotone" className="text-purple-600" />,
-    skills: ["Dart", "Flutter"],
-  },
-  {
-    category: "Cloud & Hosting",
-    icon: <Cloud size={32} weight="duotone" className="text-purple-600" />,
-    skills: ["Firebase", "Docker", "GitHub Actions", "VPS"],
-  },
-];
 
 export default function Skills() {
   return (
@@ -93,14 +61,14 @@ export default function Skills() {
           initial="hidden"
           whileInView="show"
         >
-          {skills.map((skillGroup, index) => skill(index, skillGroup))}
+          {portfolio.skills.map((skillGroup: SkillGroup, index: number) => skill(index, skillGroup))}
         </motion.div>
       </div>
     </section>
   );
 }
 
-function skill(index: number, skillGroup: skillGroup) {
+function skill(index: number, skillGroup: SkillGroup) {
   return (
     <motion.div
       key={index}
@@ -110,7 +78,7 @@ function skill(index: number, skillGroup: skillGroup) {
       className="bg-card rounded-lg p-6 shadow-md"
     >
       <div className="flex items-center mb-4">
-        {skillGroup.icon}
+        {getIcon(skillGroup.icon)}
         <h3 className="text-xl font-semibold ml-3">{skillGroup.category}</h3>
       </div>
       <div className="grid grid-cols-2 gap-3">

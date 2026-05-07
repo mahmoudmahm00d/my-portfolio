@@ -5,13 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ThemeToggle from '@/components/ThemeToggle';
 import { List, X } from '@phosphor-icons/react';
-
-const navItems = [
-  { label: 'Home', href: '/' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Contact', href: '#contact' },
-];
+import portfolio from '@/data/portfolio';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -41,11 +35,10 @@ export default function Header() {
             className="flex items-center"
           >
             <Link href="/" className="text-xl font-bold gradient-text">
-              Mahmoud Mahmoud
+              {portfolio.name}
             </Link>
           </motion.div>
 
-          {/* Desktop navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <motion.ul 
               className="flex space-x-8"
@@ -53,7 +46,7 @@ export default function Header() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, staggerChildren: 0.1 }}
             >
-              {navItems.map((item) => (
+              {portfolio.nav.map((item) => (
                 <motion.li key={item.href} whileHover={{ scale: 1.05 }}>
                   <Link 
                     href={item.href}
@@ -67,7 +60,6 @@ export default function Header() {
             <ThemeToggle />
           </nav>
 
-          {/* Mobile menu button */}
           <div className="flex items-center md:hidden">
             <ThemeToggle />
             <button
@@ -84,7 +76,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile navigation */}
         {mobileMenuOpen && (
           <motion.nav
             className="md:hidden mt-4 py-4"
@@ -94,7 +85,7 @@ export default function Header() {
             transition={{ duration: 0.3 }}
           >
             <ul className="flex flex-col space-y-4">
-              {navItems.map((item) => (
+              {portfolio.nav.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}

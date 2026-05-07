@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { At, House, User } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import Script from "next/script";
+import portfolio from "@/data/portfolio";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -110,10 +111,10 @@ export function Contact() {
                 <div>
                   <h4 className="font-medium mb-1">Email</h4>
                   <a
-                    href="mailto:mahmoud.darwish.mahmoud.m@gmail.com"
+                    href={`mailto:${portfolio.contact.email}`}
                     className="text-muted-foreground text-md md:text-sm hover:text-primary transition-colors"
                   >
-                    mahmoud.darwish.mahmoud.m@gmail.com
+                    {portfolio.contact.email}
                   </a>
                 </div>
               </div>
@@ -123,7 +124,7 @@ export function Contact() {
                 </div>
                 <div>
                   <h4 className="font-medium mb-1">Location</h4>
-                  <p className="text-muted-foreground">Damascus, Syria</p>
+                  <p className="text-muted-foreground">{portfolio.contact.location}</p>
                 </div>
               </div>
               <div className="flex items-start">
@@ -133,24 +134,30 @@ export function Contact() {
                 <div>
                   <h4 className="font-medium mb-1">Social Profiles</h4>
                   <div className="flex space-x-3">
-                    <a
-                      href="https://github.com/mahmoudmahm00d"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      GitHub
-                    </a>
-                    <a
-                      href="https://www.linkedin.com/in/mahmoud-darwish-mahmoud/"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      LinkedIn
-                    </a>
-                    <a
-                      href="https://x.com/MAHM00DMAHM00D"
-                      className="text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      Twitter
-                    </a>
+                    {portfolio.contact.social.github && (
+                      <a
+                        href={portfolio.contact.social.github}
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        GitHub
+                      </a>
+                    )}
+                    {portfolio.contact.social.linkedin && (
+                      <a
+                        href={portfolio.contact.social.linkedin}
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        LinkedIn
+                      </a>
+                    )}
+                    {portfolio.contact.social.twitter && (
+                      <a
+                        href={portfolio.contact.social.twitter}
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        Twitter
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
