@@ -50,7 +50,7 @@ You can start editing the page by modifying `src/app/page.tsx`. The page auto-up
 
 ## Project Structure
 
-The project follows a standard Next.js structure with some additional directories for components and utilities:
+The project follows a standard Next.js structure with additional directories for components, data, and utilities:
 
 ```
 my-portfolio/
@@ -60,6 +60,7 @@ my-portfolio/
 ├── .vscode/
 ├── README.md
 ├── components.json
+├── env.example
 ├── eslint.config.mjs
 ├── next.config.ts
 ├── package-lock.json
@@ -71,6 +72,9 @@ my-portfolio/
 │   └── og-image.jpeg
 ├── src/
 │   ├── app/
+│   │   ├── api/
+│   │   │   └── send/
+│   │   │       └── route.ts      # Contact form API
 │   │   ├── favicon.ico
 │   │   ├── globals.css
 │   │   ├── layout.tsx
@@ -82,6 +86,9 @@ my-portfolio/
 │   │   ├── Hero.tsx
 │   │   ├── Skills.tsx
 │   │   ├── ThemeToggle.tsx
+│   │   ├── Magnet.tsx
+│   │   ├── RotatingText.tsx
+│   │   ├── TiltedCard.tsx
 │   │   ├── theme-provider.tsx
 │   │   └── ui/
 │   │       ├── button.tsx
@@ -89,7 +96,12 @@ my-portfolio/
 │   │       ├── textarea.tsx
 │   │       ├── toast.tsx
 │   │       ├── toaster.tsx
-│   │       └── use-toast.tsx
+│   │       └── use-toast.ts
+│   ├── data/
+│   │   ├── portfolio.json        # Portfolio content (edit this!)
+│   │   └── portfolio.ts          # Data access layer
+│   ├── types/
+│   │   └── portfolio.ts          # TypeScript interfaces
 │   └── lib/
 │       └── utils.ts
 └── tsconfig.json
@@ -102,10 +114,69 @@ my-portfolio/
 - **SEO Friendly**: Meta tags and Open Graph tags for better search engine optimization.
 - **Contact Form**: Allows visitors to get in touch.
 
+## Portfolio Configuration
+
+All portfolio content is managed through a single JSON configuration file at `src/data/portfolio.json`. See [types/portfolio.ts](src/types/portfolio.ts) for the full data schema.
+
+To customize, edit `src/data/portfolio.json` with your own information (name, skills, experience, projects, certifications, contact, and SEO metadata).
+
+## Contact Form Setup
+
+The contact form requires **Nodemailer** (for sending emails) and **Cloudflare Turnstile** (for CAPTCHA protection).
+
+### 1. Environment Variables
+
+Create a `.env` file based on `env.example`:
+
+```bash
+# Email Configuration
+EMAIL_TO=recipient@example.com          # Your email address (receives messages)
+EMAIL_FROM=sender@example.com          # Sender email address
+SMTP_HOST=smtp.example.com             # SMTP server host
+SMTP_PORT=587                          # SMTP port (587 for TLS, 465 for SSL)
+SMTP_USER=your_smtp_username           # SMTP username
+SMTP_PASS=your_smtp_password            # SMTP password
+
+# Cloudflare Turnstile
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=your_site_key          # Public key (client-side)
+NEXT_PRIVATE_TURNSTILE_SECRET_KEY=your_secret_key    # Private key (server-side)
+```
+
+### 2. Cloudflare Turnstile Setup
+
+1. Go to [Cloudflare Turnstile Dashboard](https://dash.cloudflare.com/turnstile)
+2. Click **Add a widget**
+3. Choose widget type (Managed or Invisible)
+4. Add your domain(s) under **Domain Verification**
+5. Copy the **Site Key** → `NEXT_PUBLIC_TURNSTILE_SITE_KEY`
+6. Copy the **Secret Key** → `NEXT_PRIVATE_TURNSTILE_SECRET_KEY`
+
+### 3. SMTP Configuration
+
+**Option A: Gmail**
+1. Enable 2-Factor Authentication on your Google account
+2. Generate an [App Password](https://myaccount.google.com/apppasswords)
+3. Use `smtp.gmail.com` as host, `587` as port, your email as username, and the app password as password
+
+**Option B: Resend (Recommended for dev)**
+1. Sign up at [Resend](https://resend.com)
+2. Create an API key
+3. Use Resend's SMTP credentials:
+   - Host: `smtp.resend.com`
+   - Port: `587`
+   - User: `resend`
+   - Pass: your API key
+   - From: Your verified domain on Resend
+
+**Option C: Other SMTP Providers**
+Any SMTP provider works (SendGrid, Mailgun, Amazon SES, etc.) — just fill in their SMTP credentials.
+
 ## Technologies Used
 
 - [Next.js](https://nextjs.org/)
 - [React](https://reactjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Nodemailer](https://nodemailer.com/) — Email sending
+- [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) — CAPTCHA protection
 - [Vercel](https://vercel.com/)
