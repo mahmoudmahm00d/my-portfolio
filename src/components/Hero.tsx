@@ -320,25 +320,29 @@ export default function Hero() {
         </div>
 
         <motion.div
-          className="lg:my-8 mx-auto hidden md:flex flex-col items-center cursor-pointer"
+          className="lg:my-8 mx-auto hidden md:flex flex-col items-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
-          onClick={() => {
-            document
-              .querySelector("#skills")
-              ?.scrollIntoView({ behavior: "smooth" });
-          }}
         >
-          <span className="text-sm text-muted-foreground mb-2">
-            {t("scrollDown")}
-          </span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5 }}
+          <Link
+            href="#skills"
+            onClick={(e) => {
+              e.preventDefault();
+              document
+                .getElementById("skills")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="flex flex-col items-center cursor-pointer text-sm text-muted-foreground hover:text-primary transition-colors"
           >
-            <ArrowDown size={20} weight="bold" className="text-primary" />
-          </motion.div>
+            <span className="mb-2">{t("scrollDown")}</span>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
+            >
+              <ArrowDown size={20} weight="bold" className="text-primary" />
+            </motion.div>
+          </Link>
         </motion.div>
       </div>
     </section>

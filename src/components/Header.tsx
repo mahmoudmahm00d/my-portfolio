@@ -8,7 +8,6 @@ import LanguageToggle from "@/components/LanguageToggle";
 import { List, X } from "@phosphor-icons/react";
 import { getPortfolio } from "@/data/portfolio";
 import { useTranslations } from "next-intl";
-import { Button } from "./ui/button";
 
 interface HeaderProps {
   locale: string;
@@ -65,18 +64,21 @@ export default function Header({ locale }: HeaderProps) {
             >
               {navItems.map((item) => (
                 <motion.li key={item.href} whileHover={{ scale: 1.05 }}>
-                  <Button
-                    // href={item.href}
-                    variant={"ghost"}
-                    onClick={
-                      () => document
-                        .querySelector(`${item.href.split("/").pop()}`)
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
-                    className="text-foreground/80 hover:text-primary transition-colors"
+                  <Link
+                    href={item.href}
+                    onClick={(e) => {
+                      const hash = item.href.split("#")[1];
+                      if (hash) {
+                        e.preventDefault();
+                        document
+                          .getElementById(hash)
+                          ?.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                    className="px-4 py-2 text-foreground/80 hover:text-primary transition-colors"
                   >
                     {item.label}
-                  </Button>
+                  </Link>
                 </motion.li>
               ))}
             </motion.ul>
