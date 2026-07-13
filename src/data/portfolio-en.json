@@ -81,7 +81,6 @@
       "skills": [
         "Firebase",
         "Docker",
-        "GitHub Actions",
         "VPS"
       ]
     }
@@ -94,7 +93,8 @@
       "period": "2025 - Present",
       "description": "Developing and maintaining web applications using ASP.NET Core, React, Next.js, and TailwindCSS.",
       "achievements": [
-        "Developing and maintaining web applications using ASP.NET Core, React, Next.js, and TailwindCSS."
+        "Developing and maintaining web applications using ASP.NET Core, React, Next.js, and TailwindCSS.",
+        "Building software targeting millions of citizens in various fields."
       ]
     },
     {
@@ -102,9 +102,10 @@
       "company": "Cloud Systems",
       "location": "Bairut, Lebanon",
       "period": "2025 - Present",
-      "description": "Developing and maintaining web applications using ASP.NET Core, React, Next.js, and TailwindCSS.",
+      "description": "Developing and maintaining web applications using ASP.NET Core, C# and Razor Pages.",
       "achievements": [
-        "Developing and maintaining web applications using ASP.NET Core, React, Next.js, and TailwindCSS."
+        "Developing and maintaining web applications using ASP.NET Core, C# and Razor Pages.",
+        "Building software targeting millions of citizens in various fields."
       ]
     },
     {

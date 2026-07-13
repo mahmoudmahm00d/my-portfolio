@@ -1,6 +1,12 @@
-import portfolioData from "./portfolio.json";
+import enData from "./portfolio-en.json";
+import arData from "./portfolio-ar.json";
 import type { Portfolio } from "@/types/portfolio";
 
-const portfolio: Portfolio = portfolioData as Portfolio;
+const en = enData as Portfolio;
+const ar = arData as Portfolio;
 
-export default portfolio;
+const data: Record<string, Portfolio> = { en, ar };
+
+export function getPortfolio(locale: string): Portfolio {
+  return data[locale] || en;
+}

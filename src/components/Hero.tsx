@@ -11,11 +11,17 @@ import Link from "next/link";
 import TiltedCard from "./TiltedCard";
 import RotatingText from "./RotatingText";
 import Magnet from "./Magnet";
-import portfolio from "@/data/portfolio";
+import { getPortfolio } from "@/data/portfolio";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function Hero() {
+  const locale = useLocale();
+  const portfolio = getPortfolio(locale);
+  const t = useTranslations("hero");
+
   return (
-    <section className="flex items-center justify-center py-16">
+    <section id="home"
+      className="flex items-center justify-center py-16">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
@@ -30,17 +36,17 @@ export default function Hero() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              Hello, I&apos;m
+              {t("greeting")}
             </motion.p>
-            <motion.h1
+            <motion.p
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 gradient-text"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
               {portfolio.name}
-            </motion.h1>
-            <motion.h2
+            </motion.p>
+            <motion.h1
               className="text-2xl md:text-3xl font-medium mb-6 text-foreground/80"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -48,6 +54,7 @@ export default function Hero() {
             >
               <div className="w-[20rem] transition">
                 <RotatingText
+                  dir={locale === "ar" ? "rtl" : "ltr"}
                   texts={portfolio.roles}
                   mainClassName="px-2 text-md sm:px-2 md:px-3 bg-indigo-500 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-md"
                   staggerFrom={"first"}
@@ -55,20 +62,102 @@ export default function Hero() {
                   animate={{ y: 0 }}
                   exit={{ y: "-120%" }}
                   staggerDuration={0.025}
+                  splitBy="words"
                   splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
                   transition={{ type: "spring", damping: 30, stiffness: 400 }}
                   rotationInterval={3000}
                 />
               </div>
-            </motion.h2>
+            </motion.h1>
             <motion.p
               className="text-justify text-muted-foreground mb-8 max-w-lg"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.6 }}
             >
-              {portfolio.about}
+              {t("about")}
             </motion.p>
+
+            <motion.p
+              className="text-justify text-muted-foreground mb-4 max-w-lg text-sm leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.55, duration: 0.6 }}
+            >
+              {t("aboutExtended")}
+            </motion.p>
+
+            <motion.p
+              className="text-justify text-muted-foreground mb-8 max-w-lg text-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
+            >
+              {locale === "ar" ? (
+                <>
+                  أتبع أفضل الممارسات من{" "}
+                  <Link
+                    href="https://learn.microsoft.com/ar-sa/dotnet/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    توثيقات مايكروسوفت دوت نت
+                  </Link>{" "}
+                  والمعايير الصناعية. تصفح{" "}
+                  <Link
+                    href={portfolio.social.github || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    مشاريعي على GitHub
+                  </Link>{" "}
+                  أو{" "}
+                  <Link
+                    href={portfolio.social.linkedin || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    صفحتي على LinkedIn
+                  </Link>{" "}
+                  لمزيد من التفاصيل.
+                </>
+              ) : (
+                <>
+                  I follow best practices from{" "}
+                  <Link
+                    href="https://learn.microsoft.com/en-us/dotnet/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    Microsoft .NET documentation
+                  </Link>{" "}
+                  and industry standards. Check my{" "}
+                  <Link
+                    href={portfolio.social.github || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    GitHub projects
+                  </Link>{" "}
+                  or{" "}
+                  <Link
+                    href={portfolio.social.linkedin || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline"
+                  >
+                    LinkedIn profile
+                  </Link>{" "}
+                  for more details.
+                </>
+              )}
+            </motion.p>
+       
 
             <motion.div
               className="flex flex-wrap gap-4"
@@ -81,7 +170,7 @@ export default function Hero() {
                   href="#contact"
                   className="me-4 px-6 py-3 outline outline-md outline-purple-600 hover:bg-purple-600/80 hover:text-white rounded-md transition-colors flex items-center gap-2"
                 >
-                  <Code weight="duotone" /> Let&apos;s work together
+                  <Code weight="duotone" /> {t("workTogether")}
                 </Link>
               </Magnet>
               <Magnet padding={10} magnetStrength={8}>
@@ -90,7 +179,7 @@ export default function Hero() {
                   className="px-6 py-3 text-white bg-purple-700 hover:bg-purple-600/80 rounded-md transition-colors flex items-center gap-2"
                   target="_blank"
                 >
-                  <Download weight="duotone" /> Download CV
+                  <Download weight="duotone" /> {t("downloadCV")}
                 </Link>
               </Magnet>
             </motion.div>
@@ -159,6 +248,7 @@ export default function Hero() {
                   </div>
                 }
                 captionText=".NET minimal API app"
+                direction="ltr"
                 containerHeight="308px"
                 containerWidth="660px"
                 rotateAmplitude={12}
@@ -207,7 +297,7 @@ export default function Hero() {
                       <span className="text-[#CDD6F4] ml-2">()</span>
                       <span className="text-[#CBA6F7] ml-2">=&gt; </span>
                       <span className="text-[#A6E3AB]">
-                        &quot;Hello I am {portfolio.name.split(' ')[0]}!&quot;
+                        &quot;Hello I am {portfolio.name.split(" ")[0]}!&quot;
                       </span>
                       <span className="text-[#CDD6F4]">;</span>
                     </div>
@@ -241,7 +331,7 @@ export default function Hero() {
           }}
         >
           <span className="text-sm text-muted-foreground mb-2">
-            Scroll down
+            {t("scrollDown")}
           </span>
           <motion.div
             animate={{ y: [0, 8, 0] }}

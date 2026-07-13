@@ -1,0 +1,15 @@
+# Mahmoud Mahmoud — .NET Software Engineer Portfolio
+
+## About
+Full-stack .NET software engineer specializing in ASP.NET Core, C#, cloud technologies, and enterprise solutions.
+
+## Pages
+- https://mahmoudmahmoud.barmjli.com/en — English portfolio
+- https://mahmoudmahmoud.barmjli.com/ar — Arabic portfolio
+
+## Key Content
+- Home page with hero section, skills, professional experience, education, and contact form
+- Technical skills: C#, ASP.NET Core, Entity Framework Core, React, Next.js, TypeScript, SQL Server, Docker, Flutter
+- Professional experience at Almaalim .Co, Cloud Systems, ErtiqaSoft, Damascus University
+- Education: BSc in Software Engineering, Associate Degree in Software Engineering
+- Contact: mahmoud.darwish.mahmoud.m@gmail.com

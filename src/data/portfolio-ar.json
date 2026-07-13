@@ -1,0 +1,207 @@
+{
+  "name": "محمود محمود",
+  "title": "مهندس برمجيات",
+  "roles": [
+    "مهندس برمجيات",
+    "مطور Full-Stack .NET",
+    "مطور ويب متكامل",
+    "مطور تطبيقات جوال"
+  ],
+  "about": "متخصص في بناء تطبيقات قوية وقابلة للتوسع باستخدام ASP.NET Core و C# وتقنيات السحابة. شغوف بالكود النظيف والخدمات المصغرة وتقديم حلول برمجية عالية الجودة.",
+  "social": {
+    "github": "https://github.com/mahmoudmahm00d",
+    "linkedin": "https://linkedin.com/in/mahmoud-darwish-mahmoud",
+    "twitter": "https://x.com/MAHM00DMAHM00D",
+    "cv": "/MahmoudMahmoudResume.pdf"
+  },
+  "nav": [
+    {
+      "label": "الرئيسية",
+      "href": "/"
+    },
+    {
+      "label": "المهارات",
+      "href": "#skills"
+    },
+    {
+      "label": "الخبرات",
+      "href": "#experience"
+    },
+    {
+      "label": "اتصل بي",
+      "href": "#contact"
+    }
+  ],
+  "skills": [
+    {
+      "category": "تطوير الخلفية",
+      "icon": "BracketsCurly",
+      "skills": [
+        "C#",
+        "ASP.NET Core",
+        "Web API",
+        "Entity Framework Core",
+        "LINQ"
+      ]
+    },
+    {
+      "category": "تطوير الواجهة",
+      "icon": "DesktopTower",
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "HTML/CSS",
+        "TailwindCSS",
+        "Bootstrap"
+      ]
+    },
+    {
+      "category": "قواعد البيانات",
+      "icon": "Database",
+      "skills": [
+        "SQL Server",
+        "PostgreSQL",
+        "MySQL",
+        "SQLite"
+      ]
+    },
+    {
+      "category": "تطوير متعدد المنصات",
+      "icon": "Devices",
+      "skills": [
+        "Dart",
+        "Flutter"
+      ]
+    },
+    {
+      "category": "الحوسبة السحابية والاستضافة",
+      "icon": "Cloud",
+      "skills": [
+        "Firebase",
+        "Docker",
+        "VPS"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "title": "مهندس برمجيات ويب",
+      "company": "شركة المعالم",
+      "location": "دمشق، سوريا",
+      "period": "2025 - حتى الآن",
+      "description": "تطوير وصيانة تطبيقات الويب باستخدام ASP.NET Core و React و Next.js و TailwindCSS.",
+      "achievements": [
+        "تطوير وصيانة تطبيقات الويب باستخدام ASP.NET Core و React و Next.js و TailwindCSS.",
+        "إعادة بناء المشاريع باستخدام أحدث التقنيات وأفضل الممارسات والمبادئ العلمية والتقنية الحديثة."
+      ]
+    },
+    {
+      "title": "مهندس برمجيات ويب",
+      "company": "Cloud Systems",
+      "location": "بيروت، لبنان",
+      "period": "2025 - حتى الآن",
+      "description": "تطوير وصيانة تطبيقات الويب باستخدام ASP.NET Core و C# و Razor Pages.",
+      "achievements": [
+        "تطوير وصيانة تطبيقات الويب باستخدام ASP.NET Core و C# و Razor Pages.",
+        "بناء برمجيات تستهدف ملاييت المواطنين المستخدمين في مختلف المجالات."
+      ]
+    },
+    {
+      "title": "مطور Full-Stack",
+      "company": "إرتقاء سوفت",
+      "location": "دمشق، سوريا",
+      "period": "2021 - 2025",
+      "description": "مطور رئيسي لتطبيقات على مستوى المؤسسات باستخدام .NET 8. إدارة فريق من 3 مطورين.",
+      "achievements": [
+        "تطوير وصيانة نظام التأمين والسجل الوطني السوري الذي يخدم ملايين المواطنين السوريين، مما قلل الوقت المطلوب للعمليات بنسبة تتجاوز 80%، وإصلاح قيود البيانات في النظام الحالي وتحديث عمليات قاعدة البيانات لتمكينها من معالجة 50% طلبات إضافية",
+        "العمل على تحليل وتطوير وصيانة تطبيقات الويب والجوال وواجهات برمجة التطبيقات باستخدام C# و .NET",
+        "الإشراف على عملية إنشاء وتطوير وصيانة تطبيقات الجوال باستخدام Dart و Flutter",
+        "توجيه المطورين المبتدئين ووضع معايير البرمجة عبر الفريق"
+      ]
+    },
+    {
+      "title": "محاضر جامعي",
+      "company": "جامعة دمشق",
+      "location": "دمشق، سوريا",
+      "period": "2022 - حتى الآن",
+      "description": "تدريس المبادئ الأساسية لهندسة البرمجيات ومفاهيم البرمجة المتقدمة باستخدام C#. قيادة تطوير المناهج وتنفيذها لبرامج علوم الحاسوب.",
+      "achievements": [
+        "إرشاد أكثر من 800 طالب عبر فصول دراسية متعددة",
+        "الإشراف على أكثر من 15 مشروع تخرج مع التركيز على الحلول البرمجية العملية",
+        "تطوير وتنفيذ تطبيق لتتبع الحضور باستخدام تقنية QR code مما قلل الأعباء الإدارية بنسبة 60%"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "بكالوريوس في هندسة البرمجيات",
+      "institution": "جامعة دمشق",
+      "period": "2021 - 2026",
+      "description": "التركيز على منهجيات تطوير البرمجيات وهندسة نظم الحاسوب",
+      "achievements": [
+        "إكمال المنهج الشامل لهندسة البرمجيات",
+        "بناء عدة مشاريع شخصية"
+      ]
+    },
+    {
+      "degree": "درجة مشارك في هندسة البرمجيات",
+      "institution": "جامعة دمشق",
+      "period": "2019 - 2021",
+      "description": "أساسيات مبادئ البرمجة وأساسيات تطوير البرمجيات",
+      "achievements": [
+        "التخرج على رأس دفعتي",
+        "إتقان لغات البرمجة الأساسية",
+        "تطوير مهارات أساسية في هندسة البرمجيات"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "نظام التأمين الوطني السوري",
+      "description": "نظام تأمين ومساهمات على مستوى المؤسسات يخدم ملايين المواطنين السوريين.",
+      "technologies": [
+        ".NET 8",
+        "ASP.NET Core",
+        "Entity Framework Core",
+        "SQL Server"
+      ],
+      "featured": true
+    },
+    {
+      "title": "متتبع الحضور الجامعي",
+      "description": "نظام تتبع الحضور باستخدام رمز QR للمؤسسات التعليمية.",
+      "technologies": [
+        "Flutter",
+        "Firebase",
+        "React"
+      ],
+      "github": "https://github.com/mahmoudmahm00d/attendance-tracker"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Azure Fundamentals",
+      "issuer": "Microsoft",
+      "url": "https://learn.microsoft.com/certifications/azure-fundamentals/"
+    }
+  ],
+  "contact": {
+    "email": "mahmoud.darwish.mahmoud.m@gmail.com",
+    "location": "دمشق، سوريا",
+    "social": {
+      "github": "https://github.com/mahmoudmahm00d",
+      "linkedin": "https://linkedin.com/in/mahmoud-darwish-mahmoud",
+      "twitter": "https://x.com/MAHM00DMAHM00D"
+    }
+  },
+  "seo": {
+    "title": "محمود محمود | مهندس برمجيات .NET",
+    "description": "معرض أعمال محمود محمود، مهندس برمجيات .NET متخصص في C#, ASP.NET Core, والحلول السحابية.",
+    "keywords": ".NET, C#, مهندس برمجيات, ASP.NET Core, Azure, مطور Full-Stack",
+    "ogImage": "/og-image.jpeg",
+    "metadataBase": "https://mahmoudmahmoud.barmjli.com",
+    "twitterHandle": "@MAHM00DMAHM00D"
+  }
+}

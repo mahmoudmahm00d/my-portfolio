@@ -8,10 +8,15 @@ import {
   Medal,
   GraduationCap,
 } from "@phosphor-icons/react";
-import portfolio from "@/data/portfolio";
+import { getPortfolio } from "@/data/portfolio";
 import type { Experience, Education } from "@/types/portfolio";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function Experience() {
+  const locale = useLocale();
+  const portfolio = getPortfolio(locale);
+  const t = useTranslations("experience");
+
   return (
     <section id="experience" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -22,11 +27,10 @@ export default function Experience() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="gradient-text">Professional Experience</span>
+            <span className="gradient-text">{t("title")}</span>
           </h2>
           <p className="text-justify text-muted-foreground max-w-2xl mx-auto">
-            My journey through the software development landscape, focusing on
-            .NET technologies and enterprise solutions.
+            {t("description")}
           </p>
         </motion.div>
 
@@ -51,7 +55,7 @@ export default function Experience() {
                     <h3 className="text-justify text-xl font-bold flex items-center">
                       <Briefcase
                         weight="duotone"
-                        className="text-primary mr-2"
+                        className="text-primary me-2"
                         size={20}
                       />
                       {exp.title}
@@ -65,7 +69,7 @@ export default function Experience() {
                   <div className="flex items-center mb-4">
                     <Buildings
                       weight="duotone"
-                      className="text-primary mr-2"
+                      className="text-primary me-2"
                       size={18}
                     />
                     <span className="font-medium">{exp.company}</span>
@@ -81,12 +85,14 @@ export default function Experience() {
 
                   <div className="mt-4">
                     <h4 className="text-sm font-semibold text-primary mb-2 flex items-center">
-                      <Medal weight="duotone" className="mr-2" size={16} />
-                      Key Achievements
+                      <Medal weight="duotone" className="me-2" size={16} />
+                      {t("keyAchievements")}
                     </h4>
                     <ul className="list-disc list-inside space-y-1 text-sm text-foreground pl-1">
                       {exp.achievements.map((achievement, i) => (
-                        <li className="text-justify" key={i}>{achievement}</li>
+                        <li className="text-justify" key={i}>
+                          {achievement}
+                        </li>
                       ))}
                     </ul>
                   </div>
@@ -103,10 +109,10 @@ export default function Experience() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="gradient-text">Education</span>
+            <span className="gradient-text">{t("educationTitle")}</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-          Academic foundation that supports my professional expertise
+            {t("educationDescription")}
           </p>
         </motion.div>
 
@@ -131,7 +137,7 @@ export default function Experience() {
                     <h3 className="text-xl font-bold flex items-center">
                       <GraduationCap
                         weight="duotone"
-                        className="text-primary mr-2"
+                        className="text-primary me-2"
                         size={20}
                       />
                       {edu.degree}
@@ -145,20 +151,18 @@ export default function Experience() {
                   <div className="flex items-center mb-4">
                     <Buildings
                       weight="duotone"
-                      className="text-primary mr-2"
+                      className="text-primary me-2"
                       size={18}
                     />
                     <span className="font-medium">{edu.institution}</span>
                   </div>
 
-                  <p className="text-foreground mb-4">
-                    {edu.description}
-                  </p>
+                  <p className="text-foreground mb-4">{edu.description}</p>
 
                   <div className="mt-4">
                     <h4 className="text-sm font-semibold text-primary mb-2 flex items-center">
-                      <Medal weight="duotone" className="mr-2" size={16} />
-                      Key Achievements
+                      <Medal weight="duotone" className="me-2" size={16} />
+                      {t("keyAchievements")}
                     </h4>
                     <ul className="list-disc list-inside space-y-1 text-sm text-foreground pl-1">
                       {edu.achievements.map((achievement, i) => (

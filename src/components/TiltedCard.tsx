@@ -8,6 +8,7 @@ const springValues = {
 };
 
 export default function TiltedCard({
+  direction = "ltr",
   content,
   captionText = "",
   containerHeight = "300px",
@@ -19,6 +20,7 @@ export default function TiltedCard({
   overlayContent = null,
   displayOverlayContent = false,
 }: {
+  direction: "ltr" | "rtl";
   content: ReactNode;
   captionText: string | null;
   containerHeight: string;
@@ -82,7 +84,8 @@ export default function TiltedCard({
   return (
     <figure
       ref={ref}
-      className="relative w-full h-full [perspective:800px] flex flex-col items-center justify-center"
+      dir={direction}
+      className={`relative w-full h-full [perspective:800px] flex flex-col items-center justify-center`}
       style={{
         height: containerHeight,
         width: containerWidth,

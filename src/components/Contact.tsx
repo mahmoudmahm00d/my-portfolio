@@ -8,7 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { At, House, User } from "@phosphor-icons/react";
 import { toast } from "sonner";
 import Script from "next/script";
-import portfolio from "@/data/portfolio";
+import { getPortfolio } from "@/data/portfolio";
+import { useTranslations, useLocale } from "next-intl";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -18,6 +19,9 @@ export function Contact() {
     cfTurnstileResponse: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const locale = useLocale();
+  const portfolio = getPortfolio(locale);
+  const t = useTranslations("contact");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -31,16 +35,19 @@ export function Contact() {
     const form = new FormData(e.target as HTMLFormElement);
     const cfTurnstileResponse = form.get("cf-turnstile-response");
     if (cfTurnstileResponse === null || cfTurnstileResponse === "") {
-      toast("Please complete the CAPTCHA", {
-        description: "Please try again later.",
+      toast(t("captchaError"), {
+        description: t("errorDescription"),
       });
       return;
     }
-    
+
     formData.cfTurnstileResponse = cfTurnstileResponse as string;
-    if (formData.cfTurnstileResponse === null || formData.cfTurnstileResponse === "") {
-      toast("Please complete the CAPTCHA", {
-        description: "Please try again later.",
+    if (
+      formData.cfTurnstileResponse === null ||
+      formData.cfTurnstileResponse === ""
+    ) {
+      toast(t("captchaError"), {
+        description: t("errorDescription"),
       });
       return;
     }
@@ -55,23 +62,33 @@ export function Contact() {
 
       if (!res.ok) {
         const json = await res.json();
-        toast("Something went wrong", {
-          description: json.error || "Please try again later",
+        toast(t("errorTitle"), {
+          description: json.error || t("errorDescription"),
         });
         setIsSubmitting(false);
         return;
       }
 
-      toast("Message sent!", {
-        description: "Thank you for your message. I'll get back to you soon.",
+      toast(t("successTitle"), {
+        description: t("successDescription"),
       });
-      setFormData({ name: "", email: "", message: "", cfTurnstileResponse: "" });
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+        cfTurnstileResponse: "",
+      });
       setIsSubmitting(false);
     } catch {
-      setFormData({ name: "", email: "", message: "", cfTurnstileResponse: "" });
+      setFormData({
+        name: "",
+        email: "",
+        message: "",
+        cfTurnstileResponse: "",
+      });
       setIsSubmitting(false);
-      toast("Something went wrong", {
-        description: "Please try again later.",
+      toast(t("errorTitle"), {
+        description: t("errorDescription"),
       });
     }
   };
@@ -87,12 +104,10 @@ export function Contact() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 gradient-text">
-            Get In Touch
+            {t("title")}
           </h2>
           <div className="h-1 w-20 bg-primary mx-auto mb-6"></div>
-          <p className="text-muted-foreground">
-            Have a question or want to work together? Feel free to contact me!
-          </p>
+          <p className="text-muted-foreground">{t("description")}</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -102,14 +117,14 @@ export function Contact() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+            <h3 className="text-2xl font-bold mb-6">{t("infoTitle")}</h3>
             <div className="space-y-6">
               <div className="flex items-start">
                 <div className="mr-4 bg-primary/10 p-3 rounded-full">
                   <At className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">Email</h4>
+                  <h4 className="font-medium mb-1">{t("email")}</h4>
                   <a
                     href={`mailto:${portfolio.contact.email}`}
                     className="text-muted-foreground text-md md:text-sm hover:text-primary transition-colors"
@@ -123,8 +138,10 @@ export function Contact() {
                   <House className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">Location</h4>
-                  <p className="text-muted-foreground">{portfolio.contact.location}</p>
+                  <h4 className="font-medium mb-1">{t("location")}</h4>
+                  <p className="text-muted-foreground">
+                    {portfolio.contact.location}
+                  </p>
                 </div>
               </div>
               <div className="flex items-start">
@@ -132,7 +149,7 @@ export function Contact() {
                   <User className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-medium mb-1">Social Profiles</h4>
+                  <h4 className="font-medium mb-1">{t("socialProfiles")}</h4>
                   <div className="flex space-x-3">
                     {portfolio.contact.social.github && (
                       <a
@@ -170,21 +187,21 @@ export function Contact() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold mb-6">Send Me a Message</h3>
+            <h3 className="text-2xl font-bold mb-6">{t("formTitle")}</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label
                   htmlFor="name"
                   className="block text-sm font-medium mb-2"
                 >
-                  Your Name
+                  {t("nameLabel")}
                 </label>
                 <Input
                   id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Ahmad"
+                  placeholder={t("namePlaceholder")}
                   className="shadow-md shadow-black/5 border-black/9"
                   required
                 />
@@ -194,7 +211,7 @@ export function Contact() {
                   htmlFor="email"
                   className="block text-sm font-medium mb-2"
                 >
-                  Your Email
+                  {t("emailLabel")}
                 </label>
                 <Input
                   id="email"
@@ -202,7 +219,7 @@ export function Contact() {
                   type="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="ahmad@example.com"
+                  placeholder={t("emailPlaceholder")}
                   className="shadow-md shadow-black/5 border-black/9"
                   required
                 />
@@ -212,14 +229,14 @@ export function Contact() {
                   htmlFor="message"
                   className="block text-sm font-medium mb-2"
                 >
-                  Your Message
+                  {t("messageLabel")}
                 </label>
                 <Textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Hello, I'd like to talk about..."
+                  placeholder={t("messagePlaceholder")}
                   className="shadow-md shadow-black/5 border-black/9"
                   rows={5}
                   required
@@ -240,7 +257,7 @@ export function Contact() {
                 className="w-full bg-primary text-white"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? t("submittingButton") : t("submitButton")}
               </Button>
             </form>
           </motion.div>

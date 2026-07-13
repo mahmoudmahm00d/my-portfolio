@@ -7,9 +7,11 @@ This is a personal portfolio website built with [Next.js](https://nextjs.org), b
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
 - [Features](#features)
+- [Portfolio Configuration](#portfolio-configuration)
+- [Contact Form Setup](#contact-form-setup)
 - [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [License](#license)
+- [中文](#中文)
+- [عربي](#عربي)
 
 ## Getting Started
 
@@ -180,3 +182,102 @@ Any SMTP provider works (SendGrid, Mailgun, Amazon SES, etc.) — just fill in t
 - [Nodemailer](https://nodemailer.com/) — Email sending
 - [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) — CAPTCHA protection
 - [Vercel](https://vercel.com/)
+
+---
+
+## 中文
+
+这是我使用 [Next.js](https://nextjs.org) 构建的个人作品集网站。
+
+### 快速开始
+
+```bash
+git clone https://github.com/your-username/my-portfolio.git
+cd my-portfolio
+npm install
+npm run dev
+```
+
+### 配置
+
+在 `src/data/portfolio.json` 中编辑您的个人信息。
+
+### 联系方式设置
+
+在 `.env` 文件中配置以下环境变量（参考 `env.example`）：
+
+- **邮箱**: `EMAIL_TO`, `EMAIL_FROM`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`
+- **Cloudflare Turnstile**: `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `NEXT_PRIVATE_TURNSTILE_SECRET_KEY`
+
+---
+
+## عربي
+
+هذا موقع شخصي لمعرض الأعمال تم بناؤه باستخدام [Next.js](https://nextjs.org).
+
+### البدء السريع
+
+```bash
+git clone https://github.com/your-username/my-portfolio.git
+cd my-portfolio
+npm install
+npm run dev
+```
+
+### هيكل المشروع
+
+```
+src/
+├── data/
+│   ├── portfolio.json      # محتوى الموقع (عدّل هذا!)
+│   └── portfolio.ts        # طبقة الوصول للبيانات
+├── types/
+│   └── portfolio.ts        # واجهات TypeScript
+└── components/              # المكونات
+```
+
+### إعدادات نموذج التواصل
+
+أنشئ ملف `.env` بناءً على `env.example`:
+
+```bash
+# إعدادات البريد الإلكتروني
+EMAIL_TO=بريدك@example.com
+EMAIL_FROM=مرسل@example.com
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USER=اسم_المستخدم
+SMTP_PASS=كلمة_المرور
+
+# Cloudflare Turnstile
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=المفتاح_العام
+NEXT_PRIVATE_TURNSTILE_SECRET_KEY=المفتاح_الخاص
+```
+
+### إعداد Cloudflare Turnstile
+
+1. اذهب إلى [لوحة تحكم Turnstile](https://dash.cloudflare.com/turnstile)
+2. أضف widget جديد
+3. اختر نوع الـ widget (Managed أو Invisible)
+4. أضف نطاقك/نطاقاتك
+5. انسخ **Site Key** → `NEXT_PUBLIC_TURNSTILE_SITE_KEY`
+6. انسخ **Secret Key** → `NEXT_PRIVATE_TURNSTILE_SECRET_KEY`
+
+### إعداد SMTP
+
+**الخيار أ: Gmail**
+1. فعّل التحقق بخطوتين على حساب Google
+2. أنشئ [كلمة مرور تطبيق](https://myaccount.google.com/apppasswords)
+3. استخدم `smtp.gmail.com` كـ host و `587` كـ port
+
+**الخيار ب: Resend (موصى به للتطوير)**
+1. سجّل في [Resend](https://resend.com)
+2. أنشئ API key
+3. استخدم بيانات SMTP الخاصة بـ Resend:
+   - Host: `smtp.resend.com`
+   - Port: `587`
+   - User: `resend`
+   - Pass: مفتاح API الخاص بك
+
+**الخيار ج: مزودات SMTP أخرى**
+أي مزود يعمل (SendGrid، Mailgun، Amazon SES...) — فقط أدخل بيانات SMTP الخاصة بهم.

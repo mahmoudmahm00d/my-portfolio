@@ -10,8 +10,12 @@
       ]
     },
     "nextjs": {
-      "type": "remote",
-      "url": "https://gitmcp.io/vercel/next.js"
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "next-devtools-mcp@latest"
+      ]
     }
   }
 }
