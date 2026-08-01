@@ -24,6 +24,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const portfolio = getPortfolio(locale);
   const baseUrl = portfolio.seo.metadataBase || "https://example.com";
+  const pageUrl = locale === "en" ? baseUrl : `${baseUrl}/${locale}`;
 
   return {
     metadataBase: new URL(baseUrl),
@@ -31,12 +32,12 @@ export async function generateMetadata({
     description: portfolio.seo.description,
     keywords: portfolio.seo.keywords,
     alternates: {
-      canonical: `${baseUrl}/${locale}`,
+      canonical: pageUrl,
     },
     openGraph: {
       title: portfolio.seo.title,
       description: portfolio.seo.description,
-      url: `${baseUrl}/${locale}`,
+      url: pageUrl,
       siteName: portfolio.seo.title,
       images: [
         {
@@ -90,7 +91,10 @@ export default async function LocaleLayout({
     name: portfolio.name,
     jobTitle: portfolio.title,
     description: portfolio.about,
-    url: `${portfolio.seo.metadataBase}/${locale}`,
+    url:
+      locale === "en"
+        ? portfolio.seo.metadataBase
+        : `${portfolio.seo.metadataBase}/${locale}`,
     sameAs: [
       portfolio.social.github,
       portfolio.social.linkedin,

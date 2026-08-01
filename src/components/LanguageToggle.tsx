@@ -7,8 +7,11 @@ import { Globe } from "@phosphor-icons/react";
 export default function LanguageToggle({ locale }: { locale: string }) {
   const pathname = usePathname();
   const otherLocale = locale === "en" ? "ar" : "en";
-  const currentPath = pathname.replace(`/${locale}`, "") || "/";
-  const href = `/${otherLocale}${currentPath === "/" ? "" : currentPath}`;
+  const currentPath = pathname.replace(/^\/(en|ar)/, "") || "/";
+  const href =
+    otherLocale === "en"
+      ? currentPath
+      : `/${otherLocale}${currentPath === "/" ? "" : currentPath}`;
 
   return (
     <Link

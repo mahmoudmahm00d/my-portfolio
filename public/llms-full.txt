@@ -9,7 +9,7 @@
 
 ## Mahmoud Mahmoud | .NET Software Engineer
 
-URL: https://mahmoudmahmoud.barmjli.com/en
+URL: https://mahmoudmahmoud.barmjli.com
 
 > Mahmoud Mahmoud portfolio, a .NET Software Engineer specializing in C#, ASP.NET Core, and cloud solutions.
 

@@ -28,11 +28,12 @@ export default function Header({ locale }: HeaderProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const base = locale === "en" ? "" : `/${locale}`;
   const navItems = [
-    { label: t("home"), href: `/${locale}/#home` },
-    { label: t("skills"), href: `/${locale}/#skills` },
-    { label: t("experience"), href: `/${locale}/#experience` },
-    { label: t("contact"), href: `/${locale}/#contact` },
+    { label: t("home"), href: `${base}/#home` },
+    { label: t("skills"), href: `${base}/#skills` },
+    { label: t("experience"), href: `${base}/#experience` },
+    { label: t("contact"), href: `${base}/#contact` },
   ];
 
   return (
@@ -50,7 +51,7 @@ export default function Header({ locale }: HeaderProps) {
             transition={{ duration: 0.5 }}
             className="flex items-center"
           >
-            <Link href={`/${locale}`} className="text-xl font-bold gradient-text">
+            <Link href={base || "/"} className="text-xl font-bold gradient-text">
               {portfolio.name}
             </Link>
           </motion.div>

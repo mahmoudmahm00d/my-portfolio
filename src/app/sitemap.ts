@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ["en", "ar"] as const;
 
   return locales.map((locale) => ({
-    url: `${baseUrl}/${locale}`,
+    url: locale === "en" ? baseUrl : `${baseUrl}/${locale}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 1,

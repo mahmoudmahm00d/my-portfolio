@@ -6,7 +6,7 @@
 
 ## En
 
-- [Mahmoud Mahmoud | .NET Software Engineer](https://mahmoudmahmoud.barmjli.com/en): Mahmoud Mahmoud portfolio, a .NET Software Engineer specializing in C#, ASP.NET Core, and cloud solutions.
+- [Mahmoud Mahmoud | .NET Software Engineer](https://mahmoudmahmoud.barmjli.com): Mahmoud Mahmoud portfolio, a .NET Software Engineer specializing in C#, ASP.NET Core, and cloud solutions.
   - Technical Skills
   - Professional Experience
   - Education
