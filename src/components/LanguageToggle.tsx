@@ -10,7 +10,7 @@ export default function LanguageToggle({ locale }: { locale: string }) {
   const currentPath = pathname.replace(/^\/(en|ar)/, "") || "/";
   const href =
     otherLocale === "en"
-      ? currentPath
+      ? "/en"
       : `/${otherLocale}${currentPath === "/" ? "" : currentPath}`;
 
   return (
